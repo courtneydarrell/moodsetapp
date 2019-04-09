@@ -1,0 +1,47 @@
+<!-- <StackLayout class="form">
+    <StackLayout class="input-field">
+            <Label
+            class="label"
+            text="Mood"></Label>
+            <TextView
+            [(ngModel)]="mood"
+            #log="ngModel"
+            class="input" ></TextView>
+            </StackLayout>
+    <StackLayout class="input-field">
+            <Label
+            class="label"
+            text="Today's Activities"></Label>
+            <TextView
+            [(ngModel)]= "activity"
+            #log="ngModel"
+            class="input" ></TextView>
+    </StackLayout>
+    <StackLayout class="input-field">
+            <Label
+            class="label"
+            text="Other"></Label>
+            <TextView
+            [(ngModel)]= "other"
+            #log="ngModel"
+                class="input"
+                ></TextView>
+            <Button
+                class="btn btn-primary"
+                text="Save"
+                (tap)="add()"></Button>
+    </StackLayout> -->
+ <StackLayout class="card">
+    <ListView [items]="logs$ | async"  height="300">
+        <ng-template let-item="item">
+            <GridLayout columns="auto,*,auto">
+                <Label class="m-5" col="0" [text]="item.mood"></Label>
+                <!-- <Image class="m-5" horizontalAlignment="left" col="0" width="40" height="40" [src]="item.imagepath.length>0 ? item.imagepath : '~/assets/camera.png'"></Image> -->
+                <Label class="m-5" col="1" [text]='item.activity'></Label>
+                <Label class="m-5" col="1" [text]='item.other'></Label>
+               <!-- <Image class="m-5" col="2" horizontalAlignment="right" width="40" height="40" (tap)="delete(item)" [src]="'~/assets/trash.png'"></Image>-->
+          </GridLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>
+

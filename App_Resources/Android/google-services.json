@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1089735535186",
+    "firebase_url": "https://moodset-a003c.firebaseio.com",
+    "project_id": "moodset-a003c",
+    "storage_bucket": "moodset-a003c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089735535186:android:c6253499c1dccdef",
+        "android_client_info": {
+          "package_name": "org.nativescript.moodsetapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo_akvf7ZbZZzPcOPtLeh60Ii5EuB4D1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089735535186-nqr12v1bm0i918r6i2lfatm17ve0hj9o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1089735535186-k5gshao0a8citketnh59l4hn7aa964o2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.nativescript.moodsetapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,22 @@
+<TabView androidTabsPosition="bottom"
+    androidSelectedTabHighlightColor="blue"
+    selectedTabTextColor="blue">
+
+<StackLayout *tabItem="{title: 'Today'}" >
+    <page-router-outlet name="today"></page-router-outlet>
+    </StackLayout>
+
+<StackLayout *tabItem="{title: 'Calendar'}">
+    <page-router-outlet name="calendar"></page-router-outlet>
+</StackLayout>
+
+<StackLayout *tabItem="{title: 'Articles'}">
+    <page-router-outlet name="settings"></page-router-outlet>
+</StackLayout>
+
+<StackLayout *tabItem="{title: 'Settings'}">
+        <page-router-outlet name="settings"></page-router-outlet>
+    </StackLayout>
+
+
+</TabView>

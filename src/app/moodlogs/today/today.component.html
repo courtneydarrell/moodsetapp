@@ -1,0 +1,32 @@
+<GridLayout>
+    <ns-action-bar title="Today's Log" [showBackButton]="false">
+            <ActionItem ios.position="right" android.position="actionBar"
+            nsRouterLink="/logs/new" pageTransition="slideLeft">
+                <Label text="Add"></Label>
+            </ActionItem>
+            <ActionItem ios.position="right" android.position="actionBar"
+            nsRouterLink="/logs/editCurrent" pageTransition="slideLeft"
+            >
+                <Label text="Edit"></Label>
+            </ActionItem>
+        </ns-action-bar>
+    <StackLayout>
+    <!-- <Label *ngIf="currentDay" [text]="currentDay.date | date"> </Label> -->
+    <StackLayout>
+        <Label *ngIf="!currentLog" text="No log found!"></Label>
+        <Button *ngIf="!currentLog"
+        class="btn" text="Create Log"
+        nsRouterLink="/logs/new"
+        pageTransition="slideLeft"></Button>
+<!--
+<FlexboxLayout *ngIf="currentLog">
+      <Label  class="logTitle" text="Mood:"></Label>
+      <Label [text]="currentLog.mood" class="logInput"> </Label>
+      <Label  class="logTitle" text="Activities:"></Label>
+      <Label [text]="currentLog.activity" class="logInput"> </Label>
+      <Label  class="logTitle" text="Other: "></Label>
+      <Label [text]="currentLog.other" class="logInput"> </Label>
+     </FlexboxLayout>
+</StackLayout>
+    </StackLayout>
+    </GridLayout>-->

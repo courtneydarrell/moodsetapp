@@ -1,0 +1,105 @@
+<ns-action-bar [title]="isLoggingIn ? 'Login' : 'Signup'"
+[showBackButton]="false"
+></ns-action-bar>
+<!-- <StackLayout class="form" [formGroup]="form">
+        <StackLayout class="input-field">
+                <Label
+                class="label"
+                text="Email"
+                [ngClass]="{invalid: !emailControlIsValid}"
+                ></Label>
+                <TextField
+                keyboardType="email"
+                class="input"
+                [autocorrect]="false"
+                autocapitalizationType="none"
+                required
+                formControlName="email"
+                #emailEl
+                (returnPress)="onDone()"
+                [(ngModel)]="user.email"
+                ></TextField>
+            <Label
+            *ngIf="!emailControlIsValid"
+            text="Please enter a valid email">
+            </Label>
+        </StackLayout>
+        <StackLayout class="input-field">
+                <Label
+                class="label"
+                text="Password"
+                [ngClass]="{invalid: !passwordControlIsValid}"
+                ></Label>
+                <TextField
+                required
+                hint="Min 6 characters"
+                [secure]="true"
+                autocapitalizationType="none"
+                [autocorrect]="false"
+                class="input"
+                formControlName="password"
+                #passwordEl
+                [(ngModel)]="user.password"
+                ></TextField>
+                <Label
+                *ngIf="!passwordControlIsValid"
+                text="Password must be at least 6 characters long">
+                </Label>
+                <Button class="btn btn-flat"
+                [text]="isLogin ? 'Signup Instead' : 'Login Instead'"
+                (tap)="onSwitch()"></Button>
+                <Button
+                [text]="isLogin ? 'Login' : 'Signup'"
+                class="btn btn-primary"
+                (tap)="onSubmit()"
+                [isEnabled]="form.valid"
+                ></Button>
+        </StackLayout>
+</StackLayout> -->
+
+<FlexboxLayout class="page">
+        <StackLayout class="form">
+
+            <PreviousNextView>
+                <GridLayout rows="auto, auto, auto">
+                    <StackLayout row="0" class="input-field">
+                        <TextField class="input" hint="Email" [isEnabled]="!processing"
+                            keyboardType="email" autocorrect="false"
+                            autocapitalizationType="none" [(ngModel)]="user.email"
+                            returnKeyType="next" (returnPress)="focusPassword()"></TextField>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+
+                    <StackLayout row="1" class="input-field">
+                        <TextField #password class="input" [isEnabled]="!processing"
+                            hint="Password" secure="true" [(ngModel)]="user.password"
+                            [returnKeyType]="isLoggingIn ? 'done' : 'next'"
+                            (returnPress)="focusConfirmPassword()"></TextField>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+<!--
+                    <StackLayout row="2" *ngIf="!isLoggingIn" class="input-field">
+                        <TextField #confirmPassword class="input" [isEnabled]="!processing"
+                            hint="Confirm password" secure="true" [(ngModel)]="user.confirmPassword"
+                            returnKeyType="done"></TextField>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout> -->
+
+                    <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
+                </GridLayout>
+            </PreviousNextView>
+
+            <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!processing"
+                (tap)="submit()" class="btn btn-primary m-t-20"></Button>
+            <Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label"
+                (tap)="forgotPassword()"></Label>
+        </StackLayout>
+
+        <Label class="login-label sign-up-label" (tap)="toggleForm()">
+            <FormattedString>
+                <Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
+                <Span [text]="isLoggingIn ? 'Sign up' : ''" class="bold"></Span>
+            </FormattedString>
+        </Label>
+        <ns-loading-indicator *ngIf="processing"></ns-loading-indicator>
+    </FlexboxLayout>

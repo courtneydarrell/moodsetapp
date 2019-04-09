@@ -1,0 +1,21 @@
+/* Add mobile styles for the component here.  */
+.form {
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.input-field{
+    align-items: center;
+}
+
+.input {
+    border-bottom-width: 2;
+    border-bottom-color: purple;
+    width: 100%;
+    color: black;
+  }
+
+.input-field {
+      width: 80%;
+  }

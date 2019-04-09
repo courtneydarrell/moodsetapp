@@ -11,9 +11,7 @@ import { SettingsComponent } from "../settings/settings.component";
 import { SharedModule } from "../shared/shared.module";
 //import { DayActionsModule } from "./day-action/day-actions.module";
 import { ArticlesComponent } from '../articles/articles.component';
-import { CalendarDetailComponent } from './calendar/calendar-detail/calendar-detail.component';
 //import { LogEditComponent } from './log-edit/log-edit.component';
-//import { CalendarComponent } from './calendar/calendar.component';
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 
@@ -24,7 +22,6 @@ import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
             TodayComponent,
             SettingsComponent,
             ArticlesComponent,
-            CalendarDetailComponent,
         ],
 
     imports: [

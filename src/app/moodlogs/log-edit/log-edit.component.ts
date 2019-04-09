@@ -67,17 +67,7 @@ export class LogEditComponent implements OnInit {
      this.UID)
 //let myMood:string = this.log.mood;
    this.firebaseService.add(this.mood, this.activity, this.other);
+   this.routerExtensions.backToPreviousPage();
 }
 
-
-
-/*     onSubmit(mood: string,activity: string, other: string){
-      if (this.isCreating){
-        this.logService.createNewLog(mood,activity,other);
-      } else{
-        this.logService.updateLog(mood,activity,other);
-      }
-
-      this.router.backToPreviousPage();
-    } */
 }

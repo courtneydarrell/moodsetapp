@@ -5,6 +5,8 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { CalendarComponent } from "../moodlogs/calendar/calendar.component";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { LoadingIndicatorComponent } from './ui/loading-indicator/loading-indicator.component';
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular/listview-directives";
+import { CalendarDetailComponent } from "../moodlogs/calendar/calendar-detail/calendar-detail.component";
 //import { NativeScriptUICalendarModule } from "nativescript-ui-calendar/angular/calendar-directives";
 
 
@@ -13,16 +15,19 @@ import { LoadingIndicatorComponent } from './ui/loading-indicator/loading-indica
              NativeScriptRouterModule,
              NativeScriptFormsModule,
         NativeScriptCommonModule,
+        NativeScriptUIListViewModule
     ],
 
     declarations: [ActionBarComponent,
             CalendarComponent,
             LoadingIndicatorComponent,
+            CalendarDetailComponent
                   ],
 
     exports: [ActionBarComponent,
             CalendarComponent,
-            LoadingIndicatorComponent
+            LoadingIndicatorComponent,
+            CalendarDetailComponent
              ],
     schemas: [
                 NO_ERRORS_SCHEMA

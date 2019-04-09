@@ -135,5 +135,8 @@ export class FirebaseService {
         });
   }
 
-
+  delete(log: Log) {
+    return firebase.remove("/Logs/"+log.id+"")
+      .catch(this.handleErrors);
+  }
 }

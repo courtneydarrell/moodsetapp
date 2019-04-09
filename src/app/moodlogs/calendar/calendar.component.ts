@@ -4,8 +4,9 @@ import { FirebaseService } from '~/app/services/firebase.service';
 import { Log } from '../models/log.model';
 //import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { ListViewEventData } from 'nativescript-ui-listview';
 //import { finalize } from 'rxjs/operators';
-//import { ListViewEventData } from "nativescript-ui-listview";
+
 
 @Component({
   selector: 'ns-calendar',
@@ -17,7 +18,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 export class CalendarComponent  {
 
     constructor(
-        //private _routerExtensions: RouterExtensions,
+        private _routerExtensions: RouterExtensions,
          private firebaseService: FirebaseService,
     ) { }
 
@@ -49,5 +50,26 @@ export class CalendarComponent  {
 //let myMood:string = this.log.mood;
    this.firebaseService.add(this.mood, this.activity, this.other);
 }  */
+
+delete(log: Log) {
+    this.firebaseService.delete(log)
+      .catch(() => {
+        alert("An error occurred while deleting an item from your list.");
+      });
+  }
+
+  onItemTap(args: ListViewEventData): void {
+    const tappedItem = args.view.bindingContext;
+
+    this._routerExtensions.navigate(["/calendar/calendar-detail", tappedItem.id],
+        {
+            animated: true,
+            transition: {
+                name: "slide",
+                duration: 200,
+                curve: "ease"
+            }
+        });
+}
 
 }

@@ -1,1 +1,10 @@
 /* Add mobile styles for the component here.  */
+ .list-group-item {
+        padding: 0 0 8 0;
+ }
+
+.list-group-item-content {
+            padding: 8 15 4 15;
+        }
+
+

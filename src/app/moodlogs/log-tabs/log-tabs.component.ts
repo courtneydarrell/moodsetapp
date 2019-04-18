@@ -16,10 +16,11 @@ export class LogTabsComponent implements OnInit {
               private page: Page) { }
 
   ngOnInit() {
-    this.router.navigate([{outlets: {calendar: ['calendar'] ,
+    this.router.navigate([{outlets: {
+    calendar: ['calendar'] ,
     today: ['today'],
+    articles: ['articles'],
     settings: ['settings'],
-    articles: ['articles']
   }}],
     {
       relativeTo: this.active

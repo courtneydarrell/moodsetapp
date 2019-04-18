@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TextField } from 'tns-core-modules/ui/text-field';
+//import { TextField } from 'tns-core-modules/ui/text-field';
 import { User } from '../moodlogs/models/user.model';
 import { FirebaseService } from '../services/firebase.service';
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
+import { Page } from 'tns-core-modules/ui/page/page';
 
 @Component({
   selector: 'ns-auth',
@@ -24,12 +25,16 @@ export class AuthComponent implements OnInit {
     passwordControlIsValid = true;
     @ViewChild("password") password: ElementRef;
     @ViewChild("confirmPassword") confirmPassword: ElementRef;
+    @ViewChild('passwordField') passwordField: ElementRef;
 
   constructor(private router: RouterExtensions,
-    private firebaseService: FirebaseService,) {
+    private firebaseService: FirebaseService,
+    private page:Page
+   ) {
         this.user = new User();
         this.user.email = "";
         this.user.password = "";
+
     }
 
   ngOnInit() {
@@ -45,7 +50,14 @@ export class AuthComponent implements OnInit {
     this.form.get('password').statusChanges.subscribe(status =>{
       this.passwordControlIsValid = status === 'VALID'
     });
+
+    this.page.backgroundImage = "res://mainBackground"
   }
+
+  toggleShow() {
+    console.log(this.passwordField.nativeElement.secure);
+    this.passwordField.nativeElement.secure = !this.passwordField.nativeElement.secure;
+}
 
   submit(){
   /*   this.emailEl.nativeElement.focus();

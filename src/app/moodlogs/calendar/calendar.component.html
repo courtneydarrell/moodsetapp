@@ -1,4 +1,4 @@
-
+<ns-action-bar title="Logs"></ns-action-bar>
 <!--  <StackLayout class="card">
     <ListView [items]="logs$ | async"  height="300">
         <ng-template let-item="item">
@@ -14,23 +14,30 @@
 </StackLayout> -->
 
 <GridLayout class="page page-content">
-    <RadListView [items]="logs$ | async" (itemTap)="onItemTap($event)" class="list-group">
+    <RadListView [items]="logs$ | async" class="list-group">
         <ng-template tkListItemTemplate let-item="item">
             <StackLayout class="list-group-item">
                 <GridLayout rows="*, *, *" columns="*, *" class="list-group-item-content">
-                    <Label [text]="item.mood" class="text-primary font-weight-bold"></Label>
+                    <Label (tap)="viewDetail(item.id)" [text]="item.mood" class="text-primary font-weight-bold"></Label>
                     <Label col="1" horizontalAlignment="right" class="list-group-item-text m-r-5">
                         <FormattedString>
                            <!--TODO: Edit and delete functions will go here-->
                         </FormattedString>
                     </Label>
                     <StackLayout row="1" class="hr-light m-t-5 m-b-5" colSpan="2"></StackLayout>
-                    <Button text="Delete" (tap)="delete(item)" > </Button>
+                    <!-- <Button text="Delete" (tap)="delete(item)" > </Button> -->
                     <StackLayout row="2" col="1" verticalAlignment="center" class="list-group-item-text">
                         <Label class="p-b-10">
                             <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
                             <FormattedString ios:fontFamily="system">
                                 <Span [text]="item.activity"></Span>
+                            </FormattedString>
+                        </Label>
+
+                        <Label class="p-b-10">
+                            <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
+                            <FormattedString ios:fontFamily="system">
+                                <!-- <Span text="&#xf085;   " class="fa text-primary"></Span> -->
                                 <Span [text]="item.other"></Span>
                             </FormattedString>
                         </Label>

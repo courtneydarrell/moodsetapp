@@ -13,6 +13,7 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "./shared/shared.module";
+//import { SharedModule } from "./shared/shared.module";
 
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper

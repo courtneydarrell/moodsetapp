@@ -1,1 +1,17 @@
-<Button text="articles works!" class="btn btn-primary"></Button>
+<GridLayout tkExampleTitle tkToggleNavButton>
+    <RadListView [items]="items" marginRight="-2" backgroundColor="#e6e6e6"
+        (itemLoading)="onItemLoading($event)">
+        <ListViewStaggeredLayout tkListViewLayout scrollDirection="Vertical"
+            spanCount="1"></ListViewStaggeredLayout>
+        <ng-template tkListItemTemplate let-item="item">
+            <StackLayout margin="15" borderRadius="10">
+                <Image src="{{ item.imageSrc }}" width="500" height="120"
+                    stretch="aspectFill"></Image>
+                <StackLayout backgroundColor="white" padding="10">
+                    <Label text="{{ item.name }}" class="item-name" textWrap="true"></Label>
+                    <Label text="{{ item.desc }}" class="item-desc" textWrap="true"></Label>
+                </StackLayout>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+</GridLayout>

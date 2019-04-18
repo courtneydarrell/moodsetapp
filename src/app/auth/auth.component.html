@@ -1,64 +1,13 @@
+<!--
 <ns-action-bar [title]="isLoggingIn ? 'Login' : 'Signup'"
 [showBackButton]="false"
-></ns-action-bar>
-<!-- <StackLayout class="form" [formGroup]="form">
-        <StackLayout class="input-field">
-                <Label
-                class="label"
-                text="Email"
-                [ngClass]="{invalid: !emailControlIsValid}"
-                ></Label>
-                <TextField
-                keyboardType="email"
-                class="input"
-                [autocorrect]="false"
-                autocapitalizationType="none"
-                required
-                formControlName="email"
-                #emailEl
-                (returnPress)="onDone()"
-                [(ngModel)]="user.email"
-                ></TextField>
-            <Label
-            *ngIf="!emailControlIsValid"
-            text="Please enter a valid email">
-            </Label>
-        </StackLayout>
-        <StackLayout class="input-field">
-                <Label
-                class="label"
-                text="Password"
-                [ngClass]="{invalid: !passwordControlIsValid}"
-                ></Label>
-                <TextField
-                required
-                hint="Min 6 characters"
-                [secure]="true"
-                autocapitalizationType="none"
-                [autocorrect]="false"
-                class="input"
-                formControlName="password"
-                #passwordEl
-                [(ngModel)]="user.password"
-                ></TextField>
-                <Label
-                *ngIf="!passwordControlIsValid"
-                text="Password must be at least 6 characters long">
-                </Label>
-                <Button class="btn btn-flat"
-                [text]="isLogin ? 'Signup Instead' : 'Login Instead'"
-                (tap)="onSwitch()"></Button>
-                <Button
-                [text]="isLogin ? 'Login' : 'Signup'"
-                class="btn btn-primary"
-                (tap)="onSubmit()"
-                [isEnabled]="form.valid"
-                ></Button>
-        </StackLayout>
-</StackLayout> -->
+></ns-action-bar> -->
 
-<FlexboxLayout class="page">
+<FlexboxLayout class="page" >
         <StackLayout class="form">
+
+                <Image class="logo" src="~/app/images/fox.png"></Image>
+                <Label class="header" text="Moodset"></Label>
 
             <PreviousNextView>
                 <GridLayout rows="auto, auto, auto">
@@ -71,11 +20,12 @@
                     </StackLayout>
 
                     <StackLayout row="1" class="input-field">
-                        <TextField #password class="input" [isEnabled]="!processing"
+                        <TextField #password #passwordField class="input" [isEnabled]="!processing"
                             hint="Password" secure="true" [(ngModel)]="user.password"
                             [returnKeyType]="isLoggingIn ? 'done' : 'next'"
                             (returnPress)="focusConfirmPassword()"></TextField>
-                        <StackLayout class="hr-light"></StackLayout>
+                         <StackLayout class="hr-light"></StackLayout>
+                        <Label class="fa" text="&#xf06e;" (tap)="toggleShow()"></Label>
                     </StackLayout>
 <!--
                     <StackLayout row="2" *ngIf="!isLoggingIn" class="input-field">
@@ -84,8 +34,7 @@
                             returnKeyType="done"></TextField>
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout> -->
-
-                    <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
+   <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
                 </GridLayout>
             </PreviousNextView>
 
@@ -103,3 +52,4 @@
         </Label>
         <ns-loading-indicator *ngIf="processing"></ns-loading-indicator>
     </FlexboxLayout>
+

@@ -1,11 +1,11 @@
 {
   "nativescript": {
     "id": "org.nativescript.moodsetapp",
-    "tns-android": {
-      "version": "5.2.1"
-    },
     "tns-ios": {
       "version": "5.2.0"
+    },
+    "tns-android": {
+      "version": "5.2.1"
     }
   },
   "description": "NativeScript Application",
@@ -21,7 +21,9 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "font-awesome": "^4.7.0",
     "nativescript-angular": "~7.2.1",
+    "nativescript-bottom-navigation": "^1.5.0",
     "nativescript-plugin-firebase": "^8.1.1",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-listview": "^6.1.0",

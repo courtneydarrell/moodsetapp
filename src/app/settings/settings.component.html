@@ -1,4 +1,6 @@
 <ns-action-bar title="Settings"></ns-action-bar>
 <StackLayout>
+    <h1 text="Logged in as:" [text]=""></h1>
 <Button text="Logout" class="btn" (tap)="logout()"></Button>
+<Button text="get user" (tap)="getCurrentUser()"></Button>
 </StackLayout>

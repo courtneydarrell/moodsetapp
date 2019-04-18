@@ -8,7 +8,9 @@ import 'rxjs/add/operator/share';
 
 
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class FirebaseService {
 
   constructor(
@@ -18,7 +20,26 @@ export class FirebaseService {
   items: BehaviorSubject<Array<Log>> = new BehaviorSubject([]);
 
   private _allItems: Array<Log> = [];
+  private _email: string;
 
+  get email(): string {
+    if (this._email) {
+        return this._email;
+    }
+}
+
+  /* getUser() {
+    const user = firebase.auth().currentUser;
+    let name, email, uid, emailVerified;
+
+    if (user != null) {
+        name = user.displayName;
+        email = user.email;
+        emailVerified = user.emailVerified;
+        uid = user.BackendService.getToken();
+      }
+      console.log('User:', email)
+} */
 
   login(user: User) {
     return firebase.login({
@@ -85,12 +106,22 @@ export class FirebaseService {
     }).share();
   }
 
-  getMyLog(id: string): Observable<any> {
+   getMyLog(id: string): Observable<any> {
     return new Observable((observer: any) => {
       observer.next(this._allItems.filter(s => s.id === id)[0]);
     })
     .share();
   }
+
+getLogById(id: string): Log {
+    if (!id) {
+        return;
+    }
+
+    return this._allItems.filter((log) => {
+        return log.id === id;
+    })[0];
+}
 
   handleSnapshot(data: any) {
     //empty array, then refill and filter
@@ -116,7 +147,8 @@ export class FirebaseService {
     })
     this.items.next([...this._allItems]);
   }
- add(mood:string, other:string, activity:string) {
+ add(mood:string,activity:string, other:string
+    ) {
     return firebase.push(
         "/Logs",
         {
@@ -128,12 +160,14 @@ export class FirebaseService {
          "imagepath": ""}
       ).then(
         function (result:any) {
+        console.log('Added:',  mood,activity, other
+        )
           return 'Log added for today!';
         },
         function (errorMessage:any) {
           console.log(errorMessage);
         });
-  }
+    }
 
   delete(log: Log) {
     return firebase.remove("/Logs/"+log.id+"")

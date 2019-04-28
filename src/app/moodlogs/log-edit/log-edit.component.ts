@@ -5,6 +5,7 @@ import { PageRoute, RouterExtensions } from 'nativescript-angular/router';
 import { Log } from '../models/log.model';
 import { FirebaseService } from '~/app/services/firebase.service';
 import { Observable } from 'rxjs';
+var firebase = require("nativescript-plugin-firebase");
 
 
 @Component({
@@ -25,6 +26,7 @@ export class LogEditComponent implements OnInit {
     imagepath: string;
     UID: string;
    public log: Log;
+
 
 
     constructor (private routerExtensions: RouterExtensions,
@@ -57,6 +59,8 @@ export class LogEditComponent implements OnInit {
     public logs$: Observable<any>;
 
   add() {
+    //const logsCollection = firebase.firestore().collection("Logs");
+
     this.log = new Log(
      this.id,
      this.mood,

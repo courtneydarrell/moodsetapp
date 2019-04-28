@@ -8,6 +8,12 @@ import { Subscription } from 'rxjs';
   moduleId: module.id,
 })
 export class TodayComponent {
+
+    currentDay = new Date()
+
+    ngOnInit() {
+        this.currentDay = new Date()
+    }
 /*    currentDay: Day;
   curLogSub: Subscription;
 

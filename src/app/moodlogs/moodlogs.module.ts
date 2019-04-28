@@ -7,7 +7,6 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { MoodlogsRoutingModule } from "./moodlogs-routing.module";
 import { LogTabsComponent } from "./log-tabs/log-tabs.component";
 import { TodayComponent } from "./today/today.component";
-import { SettingsComponent } from "../settings/settings.component";
 import { SharedModule } from "../shared/shared.module";
 //import { DayActionsModule } from "./day-action/day-actions.module";
 //import { LogEditComponent } from './log-edit/log-edit.component';
@@ -20,7 +19,6 @@ import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
     declarations: [
             LogTabsComponent,
             TodayComponent,
-            SettingsComponent,
         ],
 
     imports: [

@@ -2,3 +2,10 @@
 .tabs{
     background-color: #1B504E;
 }
+.page{
+    background-image: url('~/app/images/tabbar.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+

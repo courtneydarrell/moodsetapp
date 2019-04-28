@@ -3,7 +3,6 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { Routes } from "@angular/router";
 import { AuthComponent } from "./auth/auth.component";
 
-
 const routes: Routes = [
     { path: '', component: AuthComponent },
     {
@@ -22,3 +21,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 
 }
+

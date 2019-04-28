@@ -1,19 +1,19 @@
 <TabView androidTabsPosition="bottom"
     androidSelectedTabHighlightColor="blue"
-    selectedTabTextColor="blue">
-<StackLayout *tabItem="{title: 'Today'}" >
+    selectedTabTextColor="blue" class="tabview">
+<StackLayout  *tabItem="{title: 'Today', iconSource: 'res://home'}" >
     <page-router-outlet name="today"></page-router-outlet>
     </StackLayout>
 
-<StackLayout *tabItem="{title: 'Calendar'}">
+<StackLayout *tabItem="{title: 'Calendar', iconSource: 'res://calendar'}">
     <page-router-outlet name="calendar"></page-router-outlet>
 </StackLayout>
 
-<StackLayout *tabItem="{title: 'Articles'}">
+<StackLayout *tabItem="{title: 'Articles', iconSource: 'res://article'}">
     <page-router-outlet name="articles"></page-router-outlet>
 </StackLayout>
 
-<StackLayout *tabItem="{title: 'Settings'}">
+<StackLayout *tabItem="{title: 'Settings', iconSource: 'res://settings'}">
         <page-router-outlet name="settings"></page-router-outlet>
     </StackLayout>
 

@@ -11,7 +11,7 @@
             </ActionItem>
         </ns-action-bar>
     <StackLayout>
-    <!-- <Label *ngIf="currentDay" [text]="currentDay.date | date"> </Label> -->
+     <Label  [text]="currentDay | date"> </Label>
     <StackLayout>
         <Label *ngIf="!currentLog" text="No log found!"></Label>
         <Button *ngIf="!currentLog"

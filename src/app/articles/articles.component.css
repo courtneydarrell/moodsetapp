@@ -13,3 +13,16 @@
 .item-name {
     font-weight: bold;
 }
+.list-group {
+    background-image: url('~/app/images/main_background.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-family: "Roboto";
+}
+.box{
+    border-radius: 10
+}
+.android :host .box {
+    border-radius: 20
+}

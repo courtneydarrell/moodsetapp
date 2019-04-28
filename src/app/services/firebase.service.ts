@@ -5,41 +5,45 @@ import { BackendService } from "./backend.service";
 import { User } from "../moodlogs/models/user.model";
 var firebase = require("nativescript-plugin-firebase");
 import 'rxjs/add/operator/share';
+import { HttpClient } from "@angular/common/http";
+import { UtilsService } from "./utils.service";
 
 
 
-@Injectable({
-    providedIn: "root"
-})
+@Injectable()
 export class FirebaseService {
+
+items: BehaviorSubject<Array<Log>> = new BehaviorSubject([]);
+
+private _allItems: Array<Log> = [];
+public myLogs$: Observable<Array<Log>>;
+selectedDate$: Observable<Date>;
+
+private _selectedDateItemSource: BehaviorSubject<Date>;
 
   constructor(
     private ngZone: NgZone,
-    //private utils: UtilsService
-  ){}
-  items: BehaviorSubject<Array<Log>> = new BehaviorSubject([]);
+    private http: HttpClient,
+    private utils: UtilsService
+  ){
+      // Observable selectedDate source
+this._selectedDateItemSource = new BehaviorSubject<Date>(new Date());
 
-  private _allItems: Array<Log> = [];
-  private _email: string;
+// Observable selectedDate stream
+this.selectedDate$ = this._selectedDateItemSource.asObservable();
+}
+
+/*   private _email: string;
 
   get email(): string {
     if (this._email) {
         return this._email;
     }
-}
-
-  /* getUser() {
-    const user = firebase.auth().currentUser;
-    let name, email, uid, emailVerified;
-
-    if (user != null) {
-        name = user.displayName;
-        email = user.email;
-        emailVerified = user.emailVerified;
-        uid = user.BackendService.getToken();
-      }
-      console.log('User:', email)
 } */
+
+updateSelectedDate(date: Date) {
+this._selectedDateItemSource.next(date);
+}
 
   login(user: User) {
     return firebase.login({
@@ -53,6 +57,24 @@ export class FirebaseService {
         alert(errorMessage);
       });
   }
+  facebookLogin(user: User){
+  return firebase.login({
+    type: firebase.LoginType.FACEBOOK,
+    // Optional
+    facebookOptions: {
+      // defaults to ['public_profile', 'email']
+      scope: ['public_profile', 'email']
+    }
+  }).then(
+      function (result) {
+        BackendService.token = result.uid;
+        JSON.stringify(result);
+      },
+      function (errorMessage) {
+        console.log(errorMessage);
+      }
+  );
+    }
 
   register(user: User) {
     return firebase.createUser({
@@ -69,7 +91,7 @@ export class FirebaseService {
   }
 
   resetPassword(email) {
-    return firebase.resetPassword({
+    return firebase.sendPasswordResetEmail({
     email: email
     }).then((result: any) => {
           alert(JSON.stringify(result));
@@ -91,7 +113,7 @@ export class FirebaseService {
     firebase.logout();
   }
 
-  getLogList(): Observable<any> {
+ getLogList(): Observable<any> {
     return new Observable((observer: any) => {
       let path = 'Logs';
 
@@ -106,14 +128,31 @@ export class FirebaseService {
     }).share();
   }
 
-   getMyLog(id: string): Observable<any> {
+  getMyLog(id: string): Observable<any> {
     return new Observable((observer: any) => {
-      observer.next(this._allItems.filter(s => s.id === id)[0]);
-    })
-    .share();
+      observer.next(this._allItems.filter(log => log.id === id)[0]);
+    }).share();
   }
 
-getLogById(id: string): Log {
+
+ getLogs(id: string): Observable<any>{
+    return new Observable((observer: any) => {
+        let path = 'Logs/${id}';
+
+          let onChildEvent = (snapshot: any) => {
+            this.ngZone.run(() => {
+              let results = this.handleSnapshot(snapshot.value);
+              console.log(JSON.stringify(results))
+               observer.next(results);
+            });
+          };
+          firebase.addChildEventListener(onChildEvent, `/${path}`);
+          console.log('Child listener added')
+      }).share();
+    }
+
+
+/*  getLogById(id: string): Log {
     if (!id) {
         return;
     }
@@ -121,9 +160,9 @@ getLogById(id: string): Log {
     return this._allItems.filter((log) => {
         return log.id === id;
     })[0];
-}
+} */
 
-  handleSnapshot(data: any) {
+  handleSnapshot(data: any):Array<Log>{
     //empty array, then refill and filter
     this._allItems = [];
     if (data) {
@@ -147,17 +186,17 @@ getLogById(id: string): Log {
     })
     this.items.next([...this._allItems]);
   }
- add(mood:string,activity:string, other:string
+ add(mood:string,activity:string, other:string,
     ) {
     return firebase.push(
         "/Logs",
         {
-        mood : mood,
-        activity: activity,
-        other: other,
+        "mood" : mood,
+        "activity": activity,
+        "other": other,
         "UID": BackendService.token,
-         "date": 0 - Date.now(),
-         "imagepath": ""}
+        "date": 0 - 0 - Date.now(),
+        "imagepath": ""}
       ).then(
         function (result:any) {
         console.log('Added:',  mood,activity, other
@@ -172,5 +211,42 @@ getLogById(id: string): Log {
   delete(log: Log) {
     return firebase.remove("/Logs/"+log.id+"")
       .catch(this.handleErrors);
+  }
+
+uploadFile(localPath: string, file?: any): Promise<any> {
+    let filename = this.utils.getFilename(localPath);
+    let remotePath = `${filename}`;
+    return firebase.uploadFile({
+      remoteFullPath: remotePath,
+      localFullPath: localPath,
+      onProgress: function(status) {
+          console.log("Uploaded fraction: " + status.fractionCompleted);
+          console.log("Percentage complete: " + status.percentageCompleted);
+      }
+    });
+}
+
+getDownloadUrl(remoteFilePath: string): Promise<any> {
+    return firebase.getDownloadUrl({
+      remoteFullPath: remoteFilePath})
+    .then(
+      function (url:string) {
+        return url;
+      },
+      function (errorMessage:any) {
+        console.log(errorMessage);
+      });
+}
+editUser(uid:string, imagepath: string){
+    this.publishUpdates();
+    return firebase.update("/users/"+uid+"",{
+        imagepath: imagepath})
+      .then(
+        function (result:any) {
+          return 'You have successfully edited this gift!';
+        },
+        function (errorMessage:any) {
+          console.log(errorMessage);
+        });
   }
 }

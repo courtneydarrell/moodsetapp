@@ -2,18 +2,20 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { PageRoute, RouterExtensions } from 'nativescript-angular/router';
 import { switchMap } from "rxjs/operators";
 import { FirebaseService } from '~/app/services/firebase.service';
-import { Log } from '../../models/log.model';
+import { Log } from '../../moodlogs/models/log.model';
+import { ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ModalDialogParams } from 'nativescript-angular';
 
 @Component({
-  selector: 'calendar-detail',
-  templateUrl: './calendar-detail.component.html',
-  styleUrls: ['./calendar-detail.component.css'],
-  moduleId: module.id,
-  providers: [FirebaseService]
+	moduleId: module.id,
+	selector: 'modal-view',
+	templateUrl: './modal-view.component.html',
+    styleUrls: ['./modal-view.component.css'],
+    providers: [FirebaseService]
 })
-export class CalendarDetailComponent implements OnInit {
+
+export class ModalViewComponent implements OnInit {
     private _log: Log;
 
     id: string;
@@ -24,33 +26,41 @@ export class CalendarDetailComponent implements OnInit {
     imagepath: string;
     UID: string;
     private sub: any;
-    public log: Observable<any>;
+    //public log: Observable<any>;
 
+    constructor(
+      private _firebaseService: FirebaseService,
+      private _pageRoute: PageRoute,
+      private ngZone: NgZone,
+      private route: ActivatedRoute,
+      private modalParams: ModalDialogParams
+    ) {
 
+    }
 
-  constructor(
-    private firebaseService: FirebaseService,
-    private _pageRoute: PageRoute,
-    private router: Router,
-    private ngZone: NgZone,
-    private route: ActivatedRoute,
-    //private _routerExtensions: RouterExtensions
-  ) { }
+    ngOnInit(): void {
+   /*      let logId = "";
 
-  ngOnInit(){
-       /*  this._pageRoute.activatedRoute
+        this._pageRoute.activatedRoute
         .pipe(switchMap((activatedRoute) => activatedRoute.params))
         .forEach((params) => {
-            const logId = params.id;
+            logId = params.id;
+        });
 
             this._log = this._firebaseService.getLogById(logId);
-            console.log('Loaded data:', logId)
-        }); */
- this.sub = this.route.params.subscribe((params: any) => {
+              console.log('Loaded log:', logId, this._log)
+          }
+
+
+          get log(): Log {
+            return this._log;
+        } */
+
+         /*  this.sub = this.route.params.subscribe((params: any) => {
             this.id = params['id'];
             this.firebaseService.getMyLog(this.id).subscribe((log) => {
-              console.log('Loaded data:', this.id, this.mood);
-                this.ngZone.run(() => {
+            console.log('Loaded log:', this.id)
+              this.ngZone.run(() => {
                 for (let prop in log) {
                   //props
                   if (prop === "id") {
@@ -69,10 +79,8 @@ export class CalendarDetailComponent implements OnInit {
               });
             });
           });
-        }
+        } */
+
+
 }
-
-/*  get log(): Log {
-    return this._log;
-} */
-
+}

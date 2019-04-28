@@ -34,7 +34,7 @@ export class ArticlesComponent implements OnInit {
     onItemLoading(args) {
         // hack to get around issue with RadListView ios background colors: https://github.com/telerik/nativescript-ui-feedback/issues/196
         if (isIOS) {
-            var newcolor = new Color("#8CBBA9");
+            var newcolor = new Color(0, 255, 255, 255);
             args.ios.backgroundView.backgroundColor = newcolor.ios;
         }
     }

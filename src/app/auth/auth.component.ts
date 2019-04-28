@@ -83,6 +83,17 @@ export class AuthComponent implements OnInit {
         this.signUp();
     }
   }
+facebookLogin(){
+    this.firebaseService.facebookLogin(this.user)
+    .then(() => {
+      this.isAuthenticating = false;
+      this.router.navigate(['/logs'], { clearHistory: true } );
+    })
+    .catch((message:any) => {
+        this.isAuthenticating = false;
+    });
+}
+
 
   login() {
     this.firebaseService.login(this.user)
@@ -92,6 +103,7 @@ export class AuthComponent implements OnInit {
 
      })
      .catch((message:any) => {
+        alert(message);
        this.isAuthenticating = false;
      });
  }

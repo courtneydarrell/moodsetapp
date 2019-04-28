@@ -6,11 +6,12 @@
 <FlexboxLayout class="page" >
         <StackLayout class="form">
 
-                <Image class="logo" src="~/app/images/fox.png"></Image>
+                <!-- <Image class="logo" src="~/app/images/fox.png"></Image> -->
+                <Label class="header" text="Logo Here"></Label>
                 <Label class="header" text="Moodset"></Label>
 
             <PreviousNextView>
-                <GridLayout rows="auto, auto, auto">
+                <GridLayout rows="auto, auto, auto" class="m-10 input-border" columns="*,auto">
                     <StackLayout row="0" class="input-field">
                         <TextField class="input" hint="Email" [isEnabled]="!processing"
                             keyboardType="email" autocorrect="false"
@@ -20,12 +21,14 @@
                     </StackLayout>
 
                     <StackLayout row="1" class="input-field">
-                        <TextField #password #passwordField class="input" [isEnabled]="!processing"
+                        <TextField  #password #passwordField class="input" [isEnabled]="!processing"
                             hint="Password" secure="true" [(ngModel)]="user.password"
                             [returnKeyType]="isLoggingIn ? 'done' : 'next'"
                             (returnPress)="focusConfirmPassword()"></TextField>
-                         <StackLayout class="hr-light"></StackLayout>
-                        <Label class="fa" text="&#xf06e;" (tap)="toggleShow()"></Label>
+                            <GridLayout>
+                          <StackLayout class="hr-light"></StackLayout>
+                          <Label class="fa" horizontalAlignment="right" text="&#xf06e;" (tap)="toggleShow()"></Label>
+                        </GridLayout>
                     </StackLayout>
 <!--
                     <StackLayout row="2" *ngIf="!isLoggingIn" class="input-field">
@@ -43,7 +46,7 @@
             <Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label"
                 (tap)="forgotPassword()"></Label>
         </StackLayout>
-
+        <Label text="Facebook" (tap)="facebookLogin()"></Label>
         <Label class="login-label sign-up-label" (tap)="toggleForm()">
             <FormattedString>
                 <Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>

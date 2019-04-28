@@ -1,6 +1,37 @@
-<ns-action-bar title="Settings"></ns-action-bar>
-<StackLayout>
-    <h1 text="Logged in as:" [text]=""></h1>
-<Button text="Logout" class="btn" (tap)="logout()"></Button>
-<Button text="get user" (tap)="getCurrentUser()"></Button>
+<StackLayout class="page">
+<StackLayout  class="box">
+        <GridLayout >
+            <Label horizontalAlignment="left" class="logout fa" text="&#xf007;"></Label>
+            <Button horizontalAlignment="left" [nsRouterLink]="['./profile']" text="Profile" class="btn"></Button>
+             <Label horizontalAlignment="right" class="forward fa" text="&#xf105;"></Label>
+        </GridLayout>
+</StackLayout>
+<StackLayout  class="box">
+        <GridLayout >
+                <Label horizontalAlignment="left" class="logout fa" text="&#xf0f3;"></Label>
+                <Button horizontalAlignment="left" text="Notifications" class="btn"></Button>
+                <Switch horizontalAlignment="right" checked="false" class="switch"></Switch>
+            </GridLayout>
+</StackLayout>
+<StackLayout  class="box">
+        <GridLayout >
+                <Label horizontalAlignment="left" class="logout fa" text="&#xf05a;"></Label>
+                <Button horizontalAlignment="left" text="About" class="btn"></Button>
+                 <Label horizontalAlignment="right" class="forward fa" text="&#xf105;"></Label>
+            </GridLayout>
+</StackLayout>
+<StackLayout  class="box">
+                <GridLayout >
+                <Label horizontalAlignment="left" class="logout fa" text="&#xf08b;"></Label>
+                <Button horizontalAlignment="left" text="Legal" class="btn" [nsRouterLink]="['./legal']"></Button>
+                <Label horizontalAlignment="right" class="forward fa" text="&#xf56c;"></Label>
+            </GridLayout>
+            </StackLayout>
+<StackLayout  class="box">
+    <GridLayout >
+    <Label horizontalAlignment="left" class="logout fa" text="&#xf08b;"></Label>
+    <Button horizontalAlignment="left" text="Logout" class="btn" (tap)="logout()"></Button>
+    <Label horizontalAlignment="right" class="forward fa" text="&#xf105;"></Label>
+</GridLayout>
+</StackLayout>
 </StackLayout>

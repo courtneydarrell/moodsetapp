@@ -1,10 +1,11 @@
-<GridLayout tkExampleTitle tkToggleNavButton>
-    <RadListView [items]="items" marginRight="-2" backgroundColor="#e6e6e6"
-        (itemLoading)="onItemLoading($event)">
+<GridLayout class="page" tkExampleTitle tkToggleNavButton>
+        <Label text="Articles" horizontalAlignment="center"></Label>
+    <RadListView [items]="items" marginRight="-2"
+        (itemLoading)="onItemLoading($event)" class="list-group" backgroundColor="transparent">
         <ListViewStaggeredLayout tkListViewLayout scrollDirection="Vertical"
             spanCount="1"></ListViewStaggeredLayout>
         <ng-template tkListItemTemplate let-item="item">
-            <StackLayout margin="15" borderRadius="10">
+            <StackLayout margin="15" class="box">
                 <Image src="{{ item.imageSrc }}" width="500" height="120"
                     stretch="aspectFill"></Image>
                 <StackLayout backgroundColor="white" padding="10">

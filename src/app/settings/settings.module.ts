@@ -5,13 +5,11 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { SettingsComponent } from "../settings/settings.component";
 import { SharedModule } from "../shared/shared.module";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
-import { ProfileComponent } from "./profile/profile.component";
 import { SettingsRouterModule } from "./settings-router.module";
 
 
 @NgModule ({
     declarations: [
-            ProfileComponent,
             SettingsComponent,
         ],
 

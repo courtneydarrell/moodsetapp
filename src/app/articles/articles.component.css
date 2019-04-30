@@ -4,25 +4,22 @@
     margin: 15;
 }
 
-.description-label{
-    margin-bottom: 15;
-}
-.item-title {
-    text-decoration-color: white
-}
 .item-name {
     font-weight: bold;
 }
 .list-group {
-    background-image: url('~/app/images/main_background.png');
+  /*   background-image: url('~/app/images/main_background.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover; */
     font-family: "Roboto";
 }
 .box{
-    border-radius: 10
+    border-radius: 10;
+    background-color: rgba(27, 80, 78, 0.75);
+    color:white
 }
 .android :host .box {
     border-radius: 20
 }
+

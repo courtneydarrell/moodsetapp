@@ -1,28 +1,26 @@
-<!-- <ns-action-bar title="Logs"></ns-action-bar> -->
+ <ns-action-bar title="Logs"></ns-action-bar>
 
 <GridLayout class="page">
     <RadListView [items]="logs$ | async" class="list-group" separatorColor="transparent" (itemLoading)="onItemLoading($event)">
         <ng-template tkListItemTemplate let-item="item">
             <StackLayout class="list-group-item">
-                <GridLayout rows="*" columns="*, *, *" class="list-group-item-content">
-                    <StackLayout>
+                <GridLayout rows="*" columns="65, 30, auto" class="list-group-item-content">
+                    <StackLayout (tap)="viewDetail(item.id)">
                    <Label
                    col="1"
                    class="dayNum"
-                    (tap)="viewDetail(item.id)"
                      [text]="currentDay | date: 'dd'">
                     </Label>
                    <Label
                     col="2"
                     class="day"
-                    horizontalAlignment="right"
                      [text]="currentDay | date: 'EEE'">
                     </Label>
                 </StackLayout>
                    <!--  <Label horizontalAlignment="right" class="list-group-item-text m-r-5">
                     </Label> -->
                    <!--  <StackLayout row="1" class="hr-light m-t-5 m-b-5" colSpan="2"></StackLayout> -->
-                    <StackLayout col="3" verticalAlignment="center" class="list-group-item-text">
+                    <StackLayout col="3" horizontalAlignment="left" class="list-group-item-text" width="245">
                         <Label class="p-b-10">
                                 <Span [text]="item.mood"></Span>
                         </Label>

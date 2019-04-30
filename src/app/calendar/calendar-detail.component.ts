@@ -1,12 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FirebaseService } from '~/app/services/firebase.service';
-//import { Log } from '../../models/log.model';
 import {Observable} from 'rxjs/Observable';
 import { Router, ActivatedRoute } from '@angular/router';
-//import * as camera from "nativescript-camera";
 import { Subscription } from "rxjs";
-import { HttpClient } from '@angular/common/http';
 var firebase = require("nativescript-plugin-firebase");
+import { Log } from "../moodlogs/models/log.model"
 
 @Component({
   selector: 'calendar-detail',
@@ -33,35 +31,22 @@ export class CalendarDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private ngZone: NgZone,
     private _firebaseService: FirebaseService,
-    private http: HttpClient,
   ) { }
 
   ngOnInit(){
-
-/* this._pageRoute.activatedRoute
-        .pipe(switchMap((activatedRoute) => activatedRoute.params))
-        .forEach((params) => {
-            console.log(params)
-            const logId = params.id;
-
-            this._log = this._firebaseService.getLogById(logId);
-            console.log('Loaded data:', logId, this._log)
-        });
-    }
-    get log(): Log {
-        return this._log;
-    } */
  this.sub = this.route.params.subscribe((params: any) => {
     console.log(params);
       this.id = params['id'];
 
       this._firebaseService.getMyLog(this.id).subscribe((log) => {
+          console.log(log.id)
+            this.log = log;
         this.ngZone.run(() => {
           for (let prop in log) {
             //props
             if (prop === "id") {
-              this.id = log[prop];
-            }
+               this.id = log[prop];
+             }
             if (prop === "mood") {
               this.mood = log[prop];
             }
@@ -75,6 +60,13 @@ export class CalendarDetailComponent implements OnInit {
         });
       });
     });
+  }
+
+  delete(log: Log) {
+    this._firebaseService.delete(log)
+      .catch(() => {
+        alert("An error occurred while deleting an item from your list.");
+      });
   }
 
 /* onEditButtonTap(): void {

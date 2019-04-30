@@ -1,13 +1,7 @@
-<!--
-<ns-action-bar [title]="isLoggingIn ? 'Login' : 'Signup'"
-[showBackButton]="false"
-></ns-action-bar> -->
-
-<FlexboxLayout class="page" >
-        <StackLayout class="form">
-
+<!-- <FlexboxLayout class="page" >
+        <StackLayout class="form"> -->
                 <!-- <Image class="logo" src="~/app/images/fox.png"></Image> -->
-                <Label class="header" text="Logo Here"></Label>
+<!--                 <Label class="header" text="Logo Here"></Label>
                 <Label class="header" text="Moodset"></Label>
 
             <PreviousNextView>
@@ -20,16 +14,16 @@
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout>
 
-                    <StackLayout row="1" class="input-field">
+                    <StackLayout row="1" class="input-field password">
                         <TextField  #password #passwordField class="input" [isEnabled]="!processing"
                             hint="Password" secure="true" [(ngModel)]="user.password"
                             [returnKeyType]="isLoggingIn ? 'done' : 'next'"
                             (returnPress)="focusConfirmPassword()"></TextField>
                             <GridLayout>
-                          <StackLayout class="hr-light"></StackLayout>
-                          <Label class="fa" horizontalAlignment="right" text="&#xf06e;" (tap)="toggleShow()"></Label>
-                        </GridLayout>
-                    </StackLayout>
+                          <StackLayout class="hr-light"></StackLayout> -->
+                        <!--   <Label class="fa" horizontalAlignment="right" text="&#xf06e;" (tap)="toggleShow()"></Label> -->
+<!--                         </GridLayout>
+                    </StackLayout> -->
 <!--
                     <StackLayout row="2" *ngIf="!isLoggingIn" class="input-field">
                         <TextField #confirmPassword class="input" [isEnabled]="!processing"
@@ -37,7 +31,7 @@
                             returnKeyType="done"></TextField>
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout> -->
-   <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
+  <!--  <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
                 </GridLayout>
             </PreviousNextView>
 
@@ -45,8 +39,13 @@
                 (tap)="submit()" class="btn btn-primary m-t-20"></Button>
             <Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label"
                 (tap)="forgotPassword()"></Label>
-        </StackLayout>
-        <Label text="Facebook" (tap)="facebookLogin()"></Label>
+        </StackLayout >
+        <FlexboxLayout>
+        <Image *ngIf="isLoggingIn" class="google" src="~/app/images/google.png">
+        </Image>
+        <Image *ngIf="isLoggingIn" (tap)="facebookLogin()" class="facebook" src="~/app/images/facebook.png">
+        </Image>
+    </FlexboxLayout>
         <Label class="login-label sign-up-label" (tap)="toggleForm()">
             <FormattedString>
                 <Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
@@ -54,5 +53,33 @@
             </FormattedString>
         </Label>
         <ns-loading-indicator *ngIf="processing"></ns-loading-indicator>
-    </FlexboxLayout>
+    </FlexboxLayout> -->
+    <StackLayout orientation="vertical" class="main">
+            <Image #logo width="140" class="logo" src="~/app/images/fox.png"></Image>
+            <Label [visibility]="navigating ? 'collapsed' : 'visible'" class="header" text="Moodset"></Label>
+            <StackLayout #circle width="100" height="100" class="login-done" orientation="horizontal"></StackLayout>
 
+            <StackLayout [visibility]="navigating ? 'collapsed' : 'visible'" orientation="horizontal" class="reg-log-container">
+                <Label text="L O G I N" (tap)="setToLogin()" [ngClass]="[isLoggingIn ? 'reg-active' : 'reg-deactive']"></Label>
+                <Label text=" | " class="reg-separator"></Label>
+                <Label text="R E G I S T E R" (tap)="setToRegister()" [ngClass]="[!isLoggingIn ? 'reg-active' : 'reg-deactive']"></Label>
+            </StackLayout>
+
+
+            <StackLayout [visibility]="navigating ? 'collapsed' : 'visible'" orientation="vertical" class="form-container" [ngClass]="[formSubmitted ? 'form-container-submitted' : 'form-container']">
+                <TextField [isEnabled]="!processing"
+                keyboardType="email" autocorrect="false"
+                autocapitalizationType="none" [(ngModel)]="user.email" hint="Email" class="form-input" textAlignment="center"></TextField>
+                <TextField #password #passwordField [isEnabled]="!processing" [(ngModel)]="user.password" hint="Password" class="form-input" textAlignment="center" secure="true"></TextField>
+               <TextField #item #confirmPassword [(ngModel)]="user.confirmPassword" [visibility]="!isLoggingIn ? 'visible' : 'hidden'" hint="Confirm Password" class="form-input" secure="true" textAlignment="center"></TextField>
+                <Button (touch)="onFocus($event)" #btn text="{{loginTxt}}" (tap)="submit()" class="form-button"></Button>
+            </StackLayout>
+            <Label *ngIf="isLoggingIn" [visibility]="navigating ? 'collapsed' : 'visible'" class="loginText" text="Or log in with your social media account:"></Label>
+            <FlexboxLayout class="social-icons" [visibility]="navigating ? 'collapsed' : 'visible'" >
+                    <Image *ngIf="isLoggingIn" class="google" src="~/app/images/google.png">
+                    </Image>
+                    <Image *ngIf="isLoggingIn" (tap)="facebookLogin()" class="facebook" src="~/app/images/facebook.png">
+                    </Image>
+                </FlexboxLayout>
+                <Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" [visibility]="navigating ? 'collapsed' : 'visible'" (tap)="forgotPassword()"></Label>
+        </StackLayout>

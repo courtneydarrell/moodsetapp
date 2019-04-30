@@ -6,6 +6,7 @@ import { ArticleDetailComponent } from "./article-detail/article-detail.componen
 import { SharedModule } from "../shared/shared.module";
 import { NO_ERRORS_SCHEMA, NgModule } from "@angular/core";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular/listview-directives";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular/l
         NativeScriptFormsModule,
         NativeScriptUIListViewModule,
         NativeScriptCommonModule,
+        NativeScriptHttpClientModule,
         //NativeScriptRouterModule,
         NativeScriptRouterModule.forChild([
             {path: '', component: ArticlesComponent},

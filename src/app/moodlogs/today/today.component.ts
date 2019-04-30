@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+const firebase = require("nativescript-plugin-firebase");
 
 @Component({
   selector: 'ns-today',
@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 export class TodayComponent {
 
     currentDay = new Date()
+    private _name: string;
+    displayName:string
 
     ngOnInit() {
         this.currentDay = new Date()
@@ -35,4 +37,15 @@ export class TodayComponent {
     }
   }
  */
+get userName(): string {
+    if (this._name) {
+        return this._name;
+    }
+ firebase.getCurrentUser().then(
+        user => {
+          this._name = user.displayName;
+
+        })
+
+    }
   }

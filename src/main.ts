@@ -3,7 +3,7 @@ import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 
 import { AppModule } from "./app/app.module";
 import { BackendService } from "./app/services/backend.service";
- var firebase = require("nativescript-plugin-firebase");
+ const firebase = require("nativescript-plugin-firebase");
  require( "nativescript-platform-css" );
 
 firebase.init({
@@ -27,6 +27,8 @@ firebase.init({
       console.log("firebase.init error: " + error);
     }
     );
+
+
 
 // A traditional NativeScript application starts by initializing global objects,
 // setting up global CSS rules, creating, and navigating to the main page.

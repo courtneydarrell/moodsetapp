@@ -1,4 +1,9 @@
-<ns-action-bar></ns-action-bar>
+<ns-action-bar>
+    <ActionItem ios.position="right" android.position="actionBar"
+    (tap)="delete()" pageTransition="slideLeft">
+        <Label text="&#xf1f8;" class="trash fa"></Label>
+    </ActionItem>
+</ns-action-bar>
 <ScrollView>
     <StackLayout #myLog class="card form">
         <Label class="h2" [text]="id"></Label>

@@ -1,11 +1,10 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
-import { AppRoutingModule} from "./app-routing.module";
+import { AppRoutingModule, authProviders} from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
-import { AuthComponent } from './auth/auth.component';
 
 
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
@@ -15,6 +14,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "./shared/shared.module";
 import { FirebaseService } from "./services/firebase.service";
 import { UtilsService } from "./services/utils.service";
+import { AuthComponent } from "./auth/auth.component";
 
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
@@ -31,16 +31,18 @@ import { UtilsService } from "./services/utils.service";
         ReactiveFormsModule,
         NativeScriptHttpClientModule,
         SharedModule,
+
     ],
     declarations: [
         AppComponent,
         ItemsComponent,
         ItemDetailComponent,
-        AuthComponent,
+        AuthComponent
     ],
     providers: [
         FirebaseService,
-        UtilsService
+        UtilsService,
+        authProviders
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { Router } from '@angular/router';
-var firebase = require("nativescript-plugin-firebase");
-
+import { User } from '~/app/moodlogs/models/user.model';
+const firebase = require("nativescript-plugin-firebase");
 
 @Component({
   selector: 'ns-settings',
@@ -15,7 +15,8 @@ var firebase = require("nativescript-plugin-firebase");
   providers: [FirebaseService]
 })
 export class SettingsComponent implements OnInit {
-
+    user: User;
+    private _email: string;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -26,8 +27,16 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
   }
 
+  get email(): string {
+    if (this._email) {
+        return this._email;
+    }
+ firebase.getCurrentUser().then(
+        user => {
+          this._email = user.email;
 
-
+        })
+    }
   logout() {
     this.firebaseService.logout();
     this.routerExtensions.navigate(["/"], { clearHistory: true } );

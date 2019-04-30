@@ -6,6 +6,10 @@
      width: 93%;
      border-radius: 20%
 }
+.user{
+    color: #1B504E;
+transform: scale(1.9,1.9);
+}
 .android :host .box {
     background-color: rgba(242, 242, 242, 0.25) ;
     height: 62;
@@ -90,3 +94,4 @@ font-weight: 900;
 .fa {
     font-family: 'FontAwesome', 'fontawesome-webfont';
 }
+

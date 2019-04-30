@@ -8,4 +8,8 @@
     background-position: center;
     background-size: cover;
 }
+.tabview{
+    selected-tab-text-color: #1B504E;
+    android-selected-tab-highlight-color: #1B504E;
+}
 

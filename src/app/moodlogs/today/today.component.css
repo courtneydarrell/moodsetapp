@@ -1,1 +1,34 @@
 /* Add mobile styles for the component here.  */
+.plus{
+    color: white;
+    transform: scale(1.5,1.5);
+    padding-right: 5
+}
+.android :host .plus{
+    color: white;
+    transform: scale(1.7,1.7);
+    margin-right: 50;
+}
+.mainItems{
+    display: flex;
+    justify-content: center;
+}
+.mainImg{
+    width: 250;
+    height: 250
+}
+.arrow{
+    width: 95;
+    height: 80;
+    margin-bottom: 30;
+    margin-left: 10
+}
+.currentDay{
+    font-size: 25;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 10;
+    margin-left: 10;
+}
+.noLogText{
+    margin-left: 30
+}

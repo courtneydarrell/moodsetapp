@@ -1,32 +1,13 @@
-/* .form {
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: center;
-  }
 
-.input-field{
-    align-items: center;
-}
-
-.input {
-    border-bottom-width: 2;
-    border-bottom-color: purple;
-    width: 100%;
-    color: black;
-  }
-
-.input-field {
-      width: 80%;
-  } */
-
-  .page {
+  /* .page {
     align-items: center;
     flex-direction: column;
-    background-image: url('~/app/images/main_background.png');
+   background-image: url('~/app/images/main_background.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    font-family: "Roboto"
+    font-family: "Roboto";
+    background-color: #B1D3C0
   }
   .form {
     margin-left: 30;
@@ -39,14 +20,6 @@
     margin-bottom: 12;
     height: 90;
     font-weight: bold;
-  }
-  .header {
-    horizontal-align: center;
-    font-size: 25;
-    font-weight: 600;
-    margin-bottom: 70;
-    text-align: center;
-    color: white;
   }
 
   .input-field {
@@ -69,7 +42,7 @@
 
   .btn-primary {
     margin: 30 5 15 5;
-    background-color: #1B504E;
+    background-color: #528E81
   }
 
   .login-label {
@@ -88,7 +61,26 @@
     color: white;
     transform: scale(1.5,1.5);
     }
-
+  .input-field .password{
+      margin-bottom: -80
+    }
+.login-label{
+  padding-bottom: 20;
+  margin-top: 20
+}
+.google{
+ width: 45;
+ height: 45;
+ padding-bottom: 25;
+ border-radius: 8;
+ margin-right: 8
+}
+.facebook{
+    width: 45;
+    height: 47;
+    padding-bottom: 25;
+    border-radius: 8;
+} */
  .far {
   font-family: "Font Awesome 5 Free", "fa-regular-400";
   font-weight: 400;
@@ -99,4 +91,176 @@
 .fas {
   font-family: "Font Awesome 5 Free", "fa-solid-900";
   font-weight: 900;
+}
+.header {
+  font-size: 25;
+  font-weight: 500;
+  text-align: center;
+  color: white;
+  margin-bottom: -30;
+  margin-top: 20;
+}
+.main {
+ background-image: url('~/app/images/main_background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+ActionBar {
+  background-color:  white;
+  color: #ff6767;
+}
+.action-label {
+font-size: 16;
+}
+.logo {
+margin-top: 30;
+font-size: 40;
+text-align: center
+}
+.reg-log-container {
+margin-top: 40;
+padding: 20;
+}
+.reg-active {
+font-size: 20;
+color:lightgray;
+border-bottom-color: #90EE90;
+border-bottom-width: 2;
+padding-bottom: 10;
+animation-name: toggle;
+animation-duration: 0.3s;
+animation-fill-mode: forwards;
+}
+reg-active-input {
+animation-name: reg_input;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+}
+.reg-deactive{
+color:lightgray;
+font-size: 11;
+padding-top: 12;
+animation-name: toggle;
+animation-duration: 0.3s;
+animation-fill-mode: forwards;
+animation-timing-function: cubic-bezier(0.1, 0.1, 1.0, 1.0);
+
+}
+@keyframes toggle {
+from { opacity: 0;}
+50% { opacity: 0.5; }
+to { opacity: 1; }
+}
+@keyframes reg_input {
+from { background-color: white; }
+50% { background-color: white; }
+to { background-color: white; }
+}
+/* .main {
+transform: scale(0.3, 0.3);
+animation-name: main;
+animation-duration: 0.3s;
+animation-fill-mode: forwards;
+animation-timing-function: cubic-bezier(0.1, 0.1, 1.0, 1.0);
+}
+@keyframes main {
+from { transform: scale(0.3, 0.3); }
+50% { transform: scale(0.7, 0.7); }
+to { transform: scale(1, 1); }
+} */
+.reg-separator{
+color: white;
+font-size: 13;
+padding-top: 12;
+padding-left: 20;
+padding-right: 20;
+animation-name: toggle;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+}
+.form-input {
+margin-left: 20;
+margin-right: 20;
+margin-top: 10;
+padding: 10;
+placeholder-color:white;
+background-color: rgba(255, 255, 255, 0.29);
+font-size: 14;
+text-decoration-color: white;
+}
+.form-container {
+margin-top: 15;
+}
+.form-container-submitted {
+animation-name: login_submitted;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+animation-iteration-count: infinite;
+}
+@keyframes login_submitted {
+from { opacity: 1 }
+50% { opacity: 0.1 }
+to { opacity: 1 }
+}
+.form-button {
+margin: 20;
+margin-top: 25;
+border-radius: 180;
+background-color: #1B504E;
+color: white;
+height: 40
+}
+.form-label {
+color:#ccc;
+margin-top: -5;
+}
+.login-done {
+width: 10;
+height: 10;
+border-radius: 1000;
+background-color: #1B504E;
+padding: 10;
+z-index: 1000000;
+margin: -50;
+}
+.google{
+  width: 45;
+  height: 45;
+  padding-bottom: 25;
+  border-radius: 8;
+  margin-right: 8;
+ }
+ .facebook{
+     width: 45;
+     height: 47;
+     padding-bottom: 25;
+     border-radius: 8;
+ }
+.social-icons{
+  display: flex;
+  justify-content: center;
+}
+.login-label {
+  margin-top: 20;
+  text-align: center;
+  color: white;
+  margin-bottom: -10
+}
+.android :host .google{
+  width: 75;
+  height: 75;
+  padding-bottom: 25;
+  margin-right: -14;
+ }
+ .android :host .facebook{
+     width: 75;
+     height: 55;
+     padding-bottom: 25;
+ }
+.loginText{
+  color: white;
+  text-align: center;
+  padding-bottom: 15;
+  margin-top: -50
 }

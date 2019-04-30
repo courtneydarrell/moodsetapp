@@ -3,21 +3,19 @@ import { Log } from "../moodlogs/models/log.model";
 import { BehaviorSubject, Observable } from "rxjs";
 import { BackendService } from "./backend.service";
 import { User } from "../moodlogs/models/user.model";
-var firebase = require("nativescript-plugin-firebase");
+const firebase = require("nativescript-plugin-firebase");
 import 'rxjs/add/operator/share';
 import { HttpClient } from "@angular/common/http";
 import { UtilsService } from "./utils.service";
-
+//import { firestore } from "nativescript-plugin-firebase";
 
 
 @Injectable()
 export class FirebaseService {
 
-items: BehaviorSubject<Array<Log>> = new BehaviorSubject([]);
 
-private _allItems: Array<Log> = [];
-public myLogs$: Observable<Array<Log>>;
 selectedDate$: Observable<Date>;
+//private logs: Array<Log> = [];
 
 private _selectedDateItemSource: BehaviorSubject<Date>;
 
@@ -32,14 +30,10 @@ this._selectedDateItemSource = new BehaviorSubject<Date>(new Date());
 // Observable selectedDate stream
 this.selectedDate$ = this._selectedDateItemSource.asObservable();
 }
+private _allItems: Array<Log> = [];
+public myLogs$: Observable<Array<Log>>;
+items: BehaviorSubject<Array<Log>> = new BehaviorSubject([]);
 
-/*   private _email: string;
-
-  get email(): string {
-    if (this._email) {
-        return this._email;
-    }
-} */
 
 updateSelectedDate(date: Date) {
 this._selectedDateItemSource.next(date);
@@ -113,20 +107,21 @@ this._selectedDateItemSource.next(date);
     firebase.logout();
   }
 
- getLogList(): Observable<any> {
+  getLogList(): Observable<any> {
     return new Observable((observer: any) => {
       let path = 'Logs';
 
         let onValueEvent = (snapshot: any) => {
           this.ngZone.run(() => {
             let results = this.handleSnapshot(snapshot.value);
-            console.log(JSON.stringify(results))
-             observer.next(results);
+            console.log(JSON.stringify(results));
+            observer.next(results);
           });
         };
         firebase.addValueEventListener(onValueEvent, `/${path}`);
     }).share();
   }
+
 
   getMyLog(id: string): Observable<any> {
     return new Observable((observer: any) => {
@@ -134,8 +129,7 @@ this._selectedDateItemSource.next(date);
     }).share();
   }
 
-
- getLogs(id: string): Observable<any>{
+/*   getLogs(id: string): Observable<any>{
     return new Observable((observer: any) => {
         let path = 'Logs/${id}';
 
@@ -149,18 +143,8 @@ this._selectedDateItemSource.next(date);
           firebase.addChildEventListener(onChildEvent, `/${path}`);
           console.log('Child listener added')
       }).share();
-    }
+    } */
 
-
-/*  getLogById(id: string): Log {
-    if (!id) {
-        return;
-    }
-
-    return this._allItems.filter((log) => {
-        return log.id === id;
-    })[0];
-} */
 
   handleSnapshot(data: any):Array<Log>{
     //empty array, then refill and filter
@@ -195,7 +179,8 @@ this._selectedDateItemSource.next(date);
         "activity": activity,
         "other": other,
         "UID": BackendService.token,
-        "date": 0 - 0 - Date.now(),
+        "date": 0 - Date.now(),
+        updateTs: firebase.ServerValue.TIMESTAMP,
         "imagepath": ""}
       ).then(
         function (result:any) {

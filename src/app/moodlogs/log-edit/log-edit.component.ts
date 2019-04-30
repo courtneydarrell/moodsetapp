@@ -23,6 +23,7 @@ export class LogEditComponent implements OnInit {
     activity: string;
     other: string;
     date: number;
+    updateTs: number;
     imagepath: string;
     UID: string;
    public log: Log;
@@ -67,10 +68,11 @@ export class LogEditComponent implements OnInit {
      this.activity,
      this.other,
      this.date,
+     this.updateTs,
      this.imagepath,
      this.UID)
     //let myMood:string = this.log.mood;
-   this.firebaseService.add(this.activity, this.mood, this.other
+   this.firebaseService.add(this.mood, this.activity, this.other
        );
    this.routerExtensions.backToPreviousPage();
 }

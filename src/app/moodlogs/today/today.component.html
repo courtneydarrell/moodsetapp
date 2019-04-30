@@ -1,23 +1,25 @@
-<GridLayout>
-    <ns-action-bar title="Today's Log" [showBackButton]="false">
+    <ns-action-bar [showBackButton]="false">
             <ActionItem ios.position="right" android.position="actionBar"
             nsRouterLink="/logs/new" pageTransition="slideLeft">
-                <Label text="Add"></Label>
-            </ActionItem>
-            <ActionItem ios.position="right" android.position="actionBar"
-            nsRouterLink="/logs/editCurrent" pageTransition="slideLeft"
-            >
-                <Label text="Edit"></Label>
+                <Label text="&#xf067;" class="plus fa"></Label>
             </ActionItem>
         </ns-action-bar>
     <StackLayout>
-     <Label  [text]="currentDay | date"> </Label>
-    <StackLayout>
-        <Label *ngIf="!currentLog" text="No log found!"></Label>
-        <Button *ngIf="!currentLog"
+     <Label class="currentDay" [text]="currentDay | date"> </Label>
+        <!-- <Label *ngIf="!currentLog" text="No log found!"></Label> -->
+      <!--   <Button *ngIf="!currentLog"
         class="btn" text="Create Log"
         nsRouterLink="/logs/new"
         pageTransition="slideLeft"></Button>
+ -->
+ <FlexboxLayout class="mainItems">
+        <Label class="noLogText" *ngIf="!currentLog" text="Log how you're feeling!" horizontalAlignment="right"></Label>
+        <Image class="arrow" src="~/app/images/arrow.png"></Image>
+    </FlexboxLayout>
+
+        <StackLayout>
+        <Image class="mainImg" src="~/app/images/meditating.png"></Image>
+    </StackLayout>
 <!--
 <FlexboxLayout *ngIf="currentLog">
       <Label  class="logTitle" text="Mood:"></Label>
@@ -30,4 +32,5 @@
 </StackLayout>
     </StackLayout>
     </GridLayout>-->
+    </StackLayout>
     <ns-bottom-tabs></ns-bottom-tabs>

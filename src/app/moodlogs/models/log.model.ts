@@ -7,6 +7,7 @@ export class Log {
         public activity: string,
         public other: string,
         public date: number,
+        public updateTs: number,
         public imagepath: string,
         public UID: string)
     {

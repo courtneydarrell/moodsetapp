@@ -1,5 +1,5 @@
-<GridLayout class="page" tkExampleTitle tkToggleNavButton>
-        <Label text="Articles" horizontalAlignment="center"></Label>
+<ns-action-bar title="Articles"></ns-action-bar>
+ <GridLayout class="page" tkExampleTitle tkToggleNavButton>
     <RadListView [items]="items" marginRight="-2"
         (itemLoading)="onItemLoading($event)" class="list-group" backgroundColor="transparent">
         <ListViewStaggeredLayout tkListViewLayout scrollDirection="Vertical"
@@ -8,7 +8,7 @@
             <StackLayout margin="15" class="box">
                 <Image src="{{ item.imageSrc }}" width="500" height="120"
                     stretch="aspectFill"></Image>
-                <StackLayout backgroundColor="white" padding="10">
+                <StackLayout padding="10">
                     <Label text="{{ item.name }}" class="item-name" textWrap="true"></Label>
                     <Label text="{{ item.desc }}" class="item-desc" textWrap="true"></Label>
                 </StackLayout>

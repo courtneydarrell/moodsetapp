@@ -15,6 +15,7 @@ import { SharedModule } from "./shared/shared.module";
 import { FirebaseService } from "./services/firebase.service";
 import { UtilsService } from "./services/utils.service";
 import { AuthComponent } from "./auth/auth.component";
+import { PoliciesComponent } from "./auth/policies/policies.component";
 
 
 // Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
@@ -37,7 +38,8 @@ import { AuthComponent } from "./auth/auth.component";
         AppComponent,
         ItemsComponent,
         ItemDetailComponent,
-        AuthComponent
+        AuthComponent,
+        PoliciesComponent
     ],
     providers: [
         FirebaseService,

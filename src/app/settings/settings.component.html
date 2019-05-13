@@ -1,13 +1,9 @@
+<ns-action-bar title="Settings"></ns-action-bar>
 <StackLayout class="page">
-                <Label text="&#xf007;" class="user fa"></Label>
-                <Label [text]="email"></Label>
-<StackLayout  class="box">
-        <GridLayout >
-            <Label horizontalAlignment="left" class="logout fa" text="&#xf007;"></Label>
-            <Button horizontalAlignment="left" [nsRouterLink]="['./profile']" text="Profile" class="btn"></Button>
-             <Label horizontalAlignment="right" class="forward fa" text="&#xf105;"></Label>
-        </GridLayout>
-</StackLayout>
+    <FlexboxLayout>
+                <Image class="userImg" src="~/app/images/user.png"></Image>
+                <Label class="userEmail" [text]="'Logged in as:'  + email"></Label>
+            </FlexboxLayout>
 <StackLayout  class="box">
         <GridLayout >
                 <Label horizontalAlignment="left" class="logout fa" text="&#xf0f3;"></Label>

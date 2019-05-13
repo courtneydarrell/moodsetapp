@@ -1,5 +1,4 @@
-/* Add mobile styles for the component here.  */
-.plus{
+.p-5{
     color: white;
     transform: scale(1.5,1.5);
     padding-right: 5
@@ -7,7 +6,7 @@
 .android :host .plus{
     color: white;
     transform: scale(1.7,1.7);
-    margin-right: 50;
+    padding-right: 10
 }
 .mainItems{
     display: flex;
@@ -16,6 +15,10 @@
 .mainImg{
     width: 250;
     height: 250
+}
+.android :host .mainImg{
+    width: 300;
+    height: 300
 }
 .arrow{
     width: 95;
@@ -31,4 +34,7 @@
 }
 .noLogText{
     margin-left: 30
+}
+.android :host .noLogText{
+    margin-top: 40
 }

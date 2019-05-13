@@ -9,6 +9,10 @@ const firebase = require("nativescript-plugin-firebase");
 })
 export class TodayComponent {
 
+    constructor(
+    ){
+
+    }
     currentDay = new Date()
     private _name: string;
     displayName:string
@@ -16,27 +20,7 @@ export class TodayComponent {
     ngOnInit() {
         this.currentDay = new Date()
     }
-/*    currentDay: Day;
-  curLogSub: Subscription;
 
-  constructor(
-    private logService: LogService
-  ) { }
-
-  ngOnInit() {
-    this.curLogSub = this.logService.currentLog.subscribe(log => {
-      if (log) {
-      this.currentDay = log.currentDay;
-      }
-    });
-  }
-
-  ngOnDestroy(){
-    if (this.curLogSub) {
-    this.curLogSub.unsubscribe();
-    }
-  }
- */
 get userName(): string {
     if (this._name) {
         return this._name;

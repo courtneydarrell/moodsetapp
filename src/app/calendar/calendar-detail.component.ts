@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FirebaseService } from '~/app/services/firebase.service';
 import {Observable} from 'rxjs/Observable';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from "rxjs";
 var firebase = require("nativescript-plugin-firebase");
 import { Log } from "../moodlogs/models/log.model"
@@ -62,12 +62,6 @@ export class CalendarDetailComponent implements OnInit {
     });
   }
 
-  delete(log: Log) {
-    this._firebaseService.delete(log)
-      .catch(() => {
-        alert("An error occurred while deleting an item from your list.");
-      });
-  }
 
 /* onEditButtonTap(): void {
     this._routerExtensions.navigate(["./calendar-detail-edit", this.id],

@@ -11,11 +11,27 @@
 
 .input {
     border-bottom-width: 2;
-    border-bottom-color: purple;
+    border-bottom-color: #1B504E;
     width: 100%;
     color: black;
   }
 
 .input-field {
       width: 80%;
+  }
+  .label{
+   text-decoration-color:#1B504E;
+    font-size: 15;
+  }
+  .mainImg{
+    width: 200;
+    height: 200;
+    margin-bottom: -35;
+  }
+  .btn{
+    background-color: #1B504E;
+    border-radius: 10;
+    color: white;
+    height: 40;
+    width: 400
   }

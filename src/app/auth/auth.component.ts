@@ -6,6 +6,8 @@ import { FirebaseService } from '../services/firebase.service';
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 import { Page, View } from 'tns-core-modules/ui/page/page';
 import { TouchGestureEventData } from 'tns-core-modules/ui/gestures';
+import { ModalDialogService } from 'nativescript-angular';
+
 
 @Component({
   selector: 'ns-auth',
@@ -34,13 +36,15 @@ export class AuthComponent implements OnInit {
     form: FormGroup;
     emailControlIsValid = true;
     passwordControlIsValid = true;
+    @ViewChild('email') email: ElementRef;
     @ViewChild("password") password: ElementRef;
     @ViewChild("confirmPassword") confirmPassword: ElementRef;
     @ViewChild('passwordField') passwordField: ElementRef;
 
   constructor(private router: RouterExtensions,
     private firebaseService: FirebaseService,
-    private _page: Page
+    private _page: Page,
+    private modalDialog: ModalDialogService,
    ) {
         this.user = new User();
         this.user.email = "";
@@ -51,9 +55,9 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
   this.form = new FormGroup({
       email: new FormControl(null, {
-        updateOn:'submit', validators: [Validators.required, Validators.email]}),
+        updateOn:'blur', validators: [Validators.required, Validators.email]}),
       password: new FormControl(null, {
-        updateOn:'submit', validators: [Validators.required, Validators.minLength(6)]}),
+        updateOn:'blur', validators: [Validators.required, Validators.minLength(6)]}),
     });
    this.form.get('email').statusChanges.subscribe(status =>{
       this.emailControlIsValid = status === 'VALID'
@@ -110,19 +114,6 @@ facebookLogin(){
     });
 }
 
-/*
-  login() {
-    this.firebaseService.login(this.user)
-     .then(() => {
-       this.isAuthenticating = false;
-       this.router.navigate(['/logs'], { clearHistory: true } );
-
-     })
-     .catch((message:any) => {
-        alert(message);
-       this.isAuthenticating = false;
-     });
- } */
 
  signUp() {
     if (this.user.password != this.user.confirmPassword) {
@@ -141,7 +132,7 @@ facebookLogin(){
       });
   }
 
-  focusPassword() {
+/*   focusPassword() {
     this.password.nativeElement.focus();
 }
 focusConfirmPassword() {
@@ -149,7 +140,7 @@ focusConfirmPassword() {
         this.confirmPassword.nativeElement.focus();
     }
 }
-
+ */
   forgotPassword() {
 
     prompt({
@@ -218,6 +209,10 @@ setToRegister() {
 login(): void {
     this.formSubmitted = true;
     this.firebaseService.login(this.user);
+
+ /*    if (!this.form.valid) {
+      return;
+    } */
     setTimeout(() => {
 
         this.navigating = true;
@@ -252,4 +247,5 @@ onFocus(args: TouchGestureEventData) {
     }
 
 }
+
 }

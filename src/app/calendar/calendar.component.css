@@ -34,3 +34,9 @@
        padding-top: 10;
        color: white
 }
+.delete{
+       transform: scale(1.4,1.4);
+       color: rgba(27, 80, 78, 0.75);
+       margin-right: 15;
+       margin-top: 10
+}

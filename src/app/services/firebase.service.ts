@@ -7,37 +7,19 @@ const firebase = require("nativescript-plugin-firebase");
 import 'rxjs/add/operator/share';
 import { HttpClient } from "@angular/common/http";
 import { UtilsService } from "./utils.service";
-//import { firestore } from "nativescript-plugin-firebase";
 
 
 @Injectable()
 export class FirebaseService {
 
-
-selectedDate$: Observable<Date>;
-//private logs: Array<Log> = [];
-
-private _selectedDateItemSource: BehaviorSubject<Date>;
-
   constructor(
     private ngZone: NgZone,
-    private http: HttpClient,
     private utils: UtilsService
   ){
-      // Observable selectedDate source
-this._selectedDateItemSource = new BehaviorSubject<Date>(new Date());
-
-// Observable selectedDate stream
-this.selectedDate$ = this._selectedDateItemSource.asObservable();
 }
 private _allItems: Array<Log> = [];
 public myLogs$: Observable<Array<Log>>;
 items: BehaviorSubject<Array<Log>> = new BehaviorSubject([]);
-
-
-updateSelectedDate(date: Date) {
-this._selectedDateItemSource.next(date);
-}
 
   login(user: User) {
     return firebase.login({
@@ -128,22 +110,6 @@ this._selectedDateItemSource.next(date);
       observer.next(this._allItems.filter(log => log.id === id)[0]);
     }).share();
   }
-
-/*   getLogs(id: string): Observable<any>{
-    return new Observable((observer: any) => {
-        let path = 'Logs/${id}';
-
-          let onChildEvent = (snapshot: any) => {
-            this.ngZone.run(() => {
-              let results = this.handleSnapshot(snapshot.value);
-              console.log(JSON.stringify(results))
-               observer.next(results);
-            });
-          };
-          firebase.addChildEventListener(onChildEvent, `/${path}`);
-          console.log('Child listener added')
-      }).share();
-    } */
 
 
   handleSnapshot(data: any):Array<Log>{
